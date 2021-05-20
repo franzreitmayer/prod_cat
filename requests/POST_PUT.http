@@ -1,0 +1,44 @@
+@hostname = localhost
+@port = 8080
+### Create new Supplier
+POST http://{{hostname}}:{{port}}/admin/Suppliers
+Content-Type: application/json
+
+{
+    "ID": 401,
+    "name": "ACME2 Company"
+}
+
+### Create new Order
+POST http://{{hostname}}:{{port}}/admin/Orders
+Content-Type: application/json
+
+{
+    "orderNo": "ZZ100",
+    "currency_code": "EUR",
+    "Items": [
+            {
+                "amount": 1,
+                "product_ID": 102
+            },
+            {
+                "amount": 2,
+                "product_ID": 101
+            }
+    ]
+}
+
+### Update Product
+PUT http://{{hostname}}:{{port}}/admin/Products(101)
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "name": "Updated Flat Screen",
+    "price": "123.44"
+}
+
+### Delete Supplier
+DELETE http://{{hostname}}:{{port}}/admin/Suppliers(401)
+
+### Delete Order
+DELETE http://{{hostname}}:{{port}}/admin/Orders([UUID])
