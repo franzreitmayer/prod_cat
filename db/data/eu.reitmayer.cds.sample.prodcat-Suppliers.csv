@@ -1,5 +1,5 @@
-ID;name;priority
-301;MediaTV Inc.;1
-302;Clever Company;2
-303;Electronics All Over;1
-304;Stationery For You;3
+ID;name;priority;street;postcode;town;country_code
+301;MediaTV Inc.;1;Sesamstrasse 5;20095;Hamburg;DE
+302;Clever Company;2;Champs Éliysées;75001;Paris;FR
+303;Electronics All Over;1;Route 66;60601;Chicago;US
+304;Stationery For You;3;Abbey Road;E14 5HS;London;GB

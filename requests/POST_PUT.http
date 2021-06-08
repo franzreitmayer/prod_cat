@@ -42,3 +42,19 @@ DELETE http://{{hostname}}:{{port}}/admin/Suppliers(401)
 
 ### Delete Order
 DELETE http://{{hostname}}:{{port}}/admin/Orders([UUID])
+
+
+### Create Order via shop interface
+POST http://{{hostname}}:{{port}}/shop/Orders
+Content-Type: application/json
+
+{
+    "orderNo": "XX205",
+    "currency_code": "EUR",
+    "Items": [
+            {
+                "amount": 1,
+                "product_ID": 102
+            }
+    ]
+}

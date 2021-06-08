@@ -1,27 +1,31 @@
+
+using {managed, Currency} from '@sap/cds/common';
+using {eu.reitmayer.cds.common.Address} from './common';
+
 namespace eu.reitmayer.cds.sample.prodcat;
 
-entity Products {
+entity Products: managed {
     key ID          : Integer; 
-    name            : String(100) not null;
-    stock           : Integer;
-    price           : Decimal(9, 2);
-    retail          : Decimal(9, 2);
-    virtual margin  : Decimal(9, 2);
-    currency_code   : String(3);
+    name            : localized String(100) not null @title : '{i18n>productName}';
+    stock           : Integer @title: '{i18n>stock}';
+    price           : Decimal(9, 2) @title: '{i18n>price}';
+    retail          : Decimal(9, 2) @title: '{i18n>retail}';
+    virtual margin  : Decimal(9, 2) @title: '{i18n>margin}';
+    currency        : Currency;
     supplier        : Association to Suppliers;
 } 
 
-entity Suppliers {
+entity Suppliers: managed, Address {
     key ID          : Integer;
-    name            : String(100);
-    priority        : Integer;
+    name            : String(100) @title: '{i18n>supplierName}';
+    priority        : Integer @title: '{i18n>priority}';
     products        : Association to many Products on products.supplier = $self;
 }
 
 entity Orders {
     key ID          : UUID;
-    orderNo         : String;
-    currency_code   : String(3);
+    orderNo         : String @title: '{i18n>orderNumber}';
+    currency        : Currency;
     Items           : Composition of many OrderItems on Items.parent = $self;
 }
 
@@ -29,5 +33,5 @@ entity OrderItems {
     key ID          : UUID;
     parent          : Association to Orders;
     product         : Association to Products;
-    amount          : Integer;
+    amount          : Integer @title: '{i18n>orderAmount}';
 }
